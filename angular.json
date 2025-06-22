@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-files-document": {
+    "ng-files-input-document": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ng-files-document",
+            "outputPath": "dist/ng-files-input-document",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ng-files-document:build:production"
+              "buildTarget": "ng-files-input-document:build:production"
             },
             "development": {
-              "buildTarget": "ng-files-document:build:development"
+              "buildTarget": "ng-files-input-document:build:development"
             }
           },
           "defaultConfiguration": "development"

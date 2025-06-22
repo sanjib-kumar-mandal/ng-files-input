@@ -1,6 +1,7 @@
 {
   "name": "ng-files-input",
-  "version": "0.0.1",
+  "description": "Angular file input component with built-in preview and optional upload support with progress tracking.",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0"
@@ -8,5 +9,42 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "author": {
+    "name": "Sanjib Kumar Mandal",
+    "email": "sanjib0248@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/sanjib-kumar-mandal/ng-files-input",
+  "bugs": "https://github.com/sanjib-kumar-mandal/ng-files-input/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanjib-kumar-mandal/ng-files-input.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "angular",
+    "angular library",
+    "ng-files-input",
+    "ng files",
+    "angular file input",
+    "angular file preview",
+    "angular file upload",
+    "file input",
+    "file upload",
+    "file preview",
+    "upload preview",
+    "preview file",
+    "angular component",
+    "input type file",
+    "file uploader",
+    "file selector",
+    "file viewer",
+    "file upload progress",
+    "file upload with preview",
+    "file upload component",
+    "angular form input"
+  ]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "ng-files-document",
+  "name": "ng-files-input-document",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ng-files-document": "node dist/ng-files-document/server/server.mjs"
+    "serve:ssr:ng-files-input-document": "node dist/ng-files-input-document/server/server.mjs"
   },
   "private": true,
   "dependencies": {

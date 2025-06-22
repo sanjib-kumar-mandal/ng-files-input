@@ -1,3 +1,8 @@
+![npm](https://img.shields.io/npm/v/ng-files-input)
+![downloads](https://img.shields.io/npm/dm/ng-files-input)
+![license](https://img.shields.io/npm/l/ng-files-input)
+![build](https://img.shields.io/github/actions/workflow/status/sanjib-kumar-mandal/ng-files-input/build.yml)
+
 # ng-files-input 📁🖼️
 
 **ng-files-input** is an Angular library for previewing uploaded files with support for images, PDFs, plain text, and more — all wrapped in a highly customizable and developer-friendly file input component.
@@ -136,6 +141,9 @@ uploadFn(file).subscribe((event) => {
 ## 🚀 Roadmap
 
 - Drag-and-drop upload
+- Multiple file preview
+- File validation (type/size)
+- Custom preview template slots
 
 ## 📄 License
 
@@ -143,4 +151,4 @@ MIT
 
 ## 👨‍💻 Author
 
-Made with ❤️ by Sanjib Kumar Mandal
+Made with ❤️ by [Sanjib Kumar Mandal](https://github.com/sanjib-kumar-mandal)
