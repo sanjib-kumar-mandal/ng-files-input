@@ -1,7 +1,6 @@
 ![npm](https://img.shields.io/npm/v/ng-files-input)
 ![downloads](https://img.shields.io/npm/dm/ng-files-input)
 ![license](https://img.shields.io/npm/l/ng-files-input)
-![build](https://img.shields.io/github/actions/workflow/status/sanjib-kumar-mandal/ng-files-input/build.yml)
 
 # ng-files-input 📁🖼️
 
