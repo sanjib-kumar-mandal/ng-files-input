@@ -25,7 +25,7 @@ import { DOCUMENT } from '@angular/common';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useValue: forwardRef(() => NgFilesInput),
+      useExisting: forwardRef(() => NgFilesInput),
       multi: true,
     },
   ],
@@ -90,7 +90,6 @@ export class NgFilesInput implements ControlValueAccessor, AfterViewInit {
 
   writeValue(obj: any): void {
     this.value = obj;
-    console.log('initial value', obj);
     this.chg.markForCheck();
   }
 
