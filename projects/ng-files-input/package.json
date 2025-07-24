@@ -1,7 +1,7 @@
 {
   "name": "ng-files-input",
   "description": "Angular file input component with built-in preview and optional upload support with progress tracking.",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0"

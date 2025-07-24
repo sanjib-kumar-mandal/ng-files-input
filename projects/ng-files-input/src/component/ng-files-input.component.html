@@ -1,129 +1,15 @@
-<label class="ng-files-wrapper" [class.disabled]="disabled()">
-    <input type="file" [attr.accept]="accept()" [attr.id]="id()" [attr.name]="name()" [disabled]="disabled()" (change)="fileChanged($event)">
-    <ng-container #container></ng-container>
+<label class="ng-files-input-wrapper">
+    <input 
+        type="file" 
+        [attr.name]="name()" 
+        [attr.id]="id()" 
+        [attr.accept]="accept()" 
+        [disabled]="disabled()"
+        (change)="onFileSelected($event)"
+    >
+    @if (isImage.valid) {
+        <img [src]="isImage.data" alt="">
+    } @else {
+        <p><ng-content></ng-content></p>
+    }
 </label>
-<!-- Initial Template -->
-<ng-template #initialViewTemplate>
-    <div class="ng-files-upload-area">
-        @if (uploadType() === 'document') {
-            <span class="document">
-                <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <line x1="8" y1="13" x2="16" y2="13" />
-                    <line x1="8" y1="16" x2="14" y2="16" />
-                </svg>
-            </span>
-        } @else if (uploadType() === 'pdf') {
-            <span class="pdf">
-                <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <text x="50%" y="75%" text-anchor="middle" font-size="6.5" fill="currentColor" font-family="Arial, sans-serif" font-weight="500" stroke="none">PDF</text>
-                </svg>
-            </span>
-        } @else if (uploadType() === 'image') {
-            <span class="image">
-                <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <path d="M21 15l-5-5L5 21" />
-                </svg>
-            </span>
-        } @else if (uploadType() === 'audio') {
-            <span class="audio">
-                <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <path d="M10 14L8 15H6v2h2l2 1v-4z" />
-                    <path d="M14.5 13.5a2.5 2.5 0 0 1 0 3.5" />
-                    <path d="M16.5 11.5a5 5 0 0 1 0 7" />
-                </svg>
-            </span>
-        } @else if (uploadType() === 'video') {
-            <span class="video">
-                <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                    <rect x="7.5" y="13" width="9" height="6" rx="1" />
-                    <polygon points="11 14.5 13.5 16 11 17.5 11 14.5" fill="currentColor" stroke="none" />
-                </svg>
-            </span>
-        } @else {
-            <span class="others">
-                <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                    <polyline points="14 2 14 8 20 8" />
-                </svg>
-            </span>
-        }
-        @if (!disabled()) {
-            <p><ng-content></ng-content></p>
-        }
-    </div>
-</ng-template>
-<!-- Upload Error Template -->
-<ng-template #uploadErrorTemplate let-message="message">
-    <div class="ng-file-error">
-        <span>
-            <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 35H42C46.42 35 50 31.42 50 27C50 22.99 47.14 19.61 43.29 19.05C41.86 13.72 36.95 10 31.25 10C26.38 10 22.15 13.07 20.36 17.29C15.76 18.23 12 22.32 12 27C12 31.97 16.03 36 21 36H23" stroke="#A0AEC0" stroke-width="2" fill="none"/>
-                <path d="M30 36V22M24 28L30 22L36 28" stroke="#4299E1" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="44" cy="44" r="8" fill="#E53E3E"/>
-                <line x1="44" y1="40" x2="44" y2="45" stroke="white" stroke-linecap="round"/>
-                <circle cx="44" cy="47.5" r="1.5" fill="white"/>
-            </svg>
-        </span>
-        <p>{{message}}</p>
-    </div>
-</ng-template>
-<!-- Upload Started -->
-<ng-template #uploadingProgressTemplate let-progress="progress">
-    <div class="ng-files-uploading"><div [style.width.%]="progress"></div></div>
-</ng-template>
-<!-- Upload Complete -->
- <ng-template #uploadCompleteTemplate let-label="label">
-    <div class="ng-files-upload-complete">
-        <span>
-            <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 35H42C46.42 35 50 31.42 50 27C50 22.99 47.14 19.61 43.29 19.05C41.86 13.72 36.95 10 31.25 10C26.38 10 22.15 13.07 20.36 17.29C15.76 18.23 12 22.32 12 27C12 31.97 16.03 36 21 36H23" stroke="#A0AEC0" stroke-width="2" fill="none"/>
-                <path d="M30 36V22M24 28L30 22L36 28" stroke="#38A169" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="44" cy="44" r="8" fill="#38A169"/>
-                <path d="M41.5 44L43.8 46.3L47.5 42.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </span>
-        <p>{{label}}</p>
-    </div>
- </ng-template>
- <!-- Preview Template -->
- <ng-template #previewTemplate>
-    <div class="ng-files-preview"></div>
- </ng-template>
- <ng-template #fileAdded let-label="label">
-    <div class="ng-files-file-attached">
-        <span>
-            <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 10H35L45 20V48C45 49.1 44.1 50 43 50H20C18.9 50 18 49.1 18 48V12C18 10.9 18.9 10 20 10Z" fill="#EDF2F7" stroke="#CBD5E0"/>
-                <path d="M35 10V20H45" stroke="#CBD5E0"/>
-                <path d="M22 32L36 18C37.66 16.34 40.34 16.34 42 18C43.66 19.66 43.66 22.34 42 24L27 39C24.79 41.21 21.21 41.21 19 39C16.79 36.79 16.79 33.21 19 31L34 16" stroke="#4A5568" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="44" cy="16" r="6" fill="#38A169"/>
-                <path d="M41.5 16L43.5 18L46.5 14.5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </span>
-        <p>{{label}}</p>
-    </div>
- </ng-template>
- <!-- Unknown -->
- <ng-template #unknownTemplate let-message="message">
-    <div class="ng-files-unknown-process">
-        <span>
-            <svg style="width: var(--ng-files-icon-size, 20); height: var(--ng-files-icon-size, 20); stroke-width: var(--ng-files-icon-stroke-width, 1);" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30 18A12 12 0 1 1 18 30A12 12 0 0 1 30 18Z" stroke="#4A5568" fill="none"/>
-                <path d="M30 8V12M30 48V52M48 30H52M8 30H12M43.3 16.7L40.5 19.5M16.7 43.3L19.5 40.5M43.3 43.3L40.5 40.5M16.7 16.7L19.5 19.5" stroke="#A0AEC0" stroke-linecap="round"/>
-                <path d="M30 24C30 21.79 31.79 20 34 20C36.21 20 38 21.79 38 24C38 26 36.5 26.5 35.3 27.3C34.1 28.1 34 28.5 34 30" stroke="#E53E3E" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="34" cy="34" r="1.5" fill="#E53E3E"/>
-            </svg>
-        </span>
-        <p>{{message}}</p>
-    </div>
- </ng-template>
